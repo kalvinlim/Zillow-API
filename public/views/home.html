@@ -1,0 +1,108 @@
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputEmail3" placeholder="Address" ng-model="form.address">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">City</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputPassword3" placeholder="City" ng-model="form.city">
+    </div>
+  </div>
+   <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">State</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputPassword3" placeholder="State" ng-model="form.state">
+    </div>
+  </div>
+   <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Zip</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputPassword3" placeholder="Zip" ng-model="form.zip">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary btn-large btn-block" ng-click="search()">Search</button>
+    </div>
+  </div>
+</form>
+
+
+
+<div class="result" ng-if="searchQueried">
+
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Deduced Location</h3>
+    </div>
+    <div class="panel-body">
+      <div class="google-maps">
+        <iframe width="600" height="450" frameborder="0" style="border:0" ng-src="{{getMapsUrl()}}" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="well">
+    <div class="btn-group" role="group" aria-label="">
+      <button type="button" class="btn btn-info">Bedrooms</button>
+      <button type="button" class="btn btn-default" ng-model="bedrooms">{{bedrooms}}</button>
+    </div>
+     <div class="btn-group" role="group" aria-label="">
+      <button type="button" class="btn btn-info">Bathrooms</button>
+      <button type="button" class="btn btn-default" ng-model="bathrooms">{{bathrooms}}</button>
+    </div>
+    <div class="btn-group" role="group" aria-label="">
+      <button type="button" class="btn btn-info">Sqft</button>
+      <button type="button" class="btn btn-default" ng-model="finishedSqFt">{{finishedSqFt}}</button>
+    </div>
+  </div>
+
+  <div class="well">
+    <div class="btn-group" role="group" aria-label="">
+      <button type="button" class="btn btn-info">Estimate</button>
+      <button type="button" class="btn btn-default" ng-model="estimate">${{estimate}}</button>
+
+
+    </div>
+     <div class="btn-group" role="group" aria-label="">
+      <button type="button" class="btn btn-success">Value Change (30 day)</button>
+      <button type="button" class="btn btn-default" ng-model="change">${{change}}</button>
+    </div>
+  </div>
+
+  <div class="well">
+    <div class="btn-group" role="group" aria-label="">
+      <button type="button" class="btn btn-info">Value Range</button>
+      <button type="button" class="btn btn-default" ng-model="low">${{low}}</button>
+       <button type="button" class="btn btn-default" ng-model="high">${{high}}</button>
+    </div>
+  </div>
+
+
+  <div class="well">
+    <div class="btn-group" role="group" aria-label="">
+      <button type="button" class="btn btn-info">Year Built</button>
+      <button type="button" class="btn btn-default" ng-model="yearBuilt">{{yearBuilt}}</button>
+    </div>
+    <div class="btn-group" role="group" aria-label="">
+      <button type="button" class="btn btn-info">Last Sold</button>
+      <button type="button" class="btn btn-default" ng-model="yearBuilt">{{lastSoldDate}}</button>
+      <button type="button" class="btn btn-default" ng-model="lastSoldPrice">${{lastSoldPrice}}</button>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
