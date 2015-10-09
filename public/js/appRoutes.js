@@ -8,6 +8,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'MainController'
 		})
 
+		// home page
+		.when('/:address/:citystatezip', {
+			templateUrl: 'views/home.html',
+			controller: 'MainController'
+		})
 
 	$locationProvider.html5Mode(true);
 

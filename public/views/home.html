@@ -2,31 +2,31 @@
   <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputEmail3" placeholder="Address" ng-model="form.address">
+      <input type="text" class="form-control" id="inputEmail3" placeholder="Address" ng-model="address">
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">City</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputPassword3" placeholder="City" ng-model="form.city">
+      <input type="text" class="form-control" id="inputPassword3" placeholder="City" ng-model="city">
     </div>
   </div>
    <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">State</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputPassword3" placeholder="State" ng-model="form.state">
+      <input type="text" class="form-control" id="inputPassword3" placeholder="State" ng-model="state">
     </div>
   </div>
    <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">Zip</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputPassword3" placeholder="Zip" ng-model="form.zip">
+      <input type="text" class="form-control" id="inputPassword3" placeholder="Zip" ng-model="zip">
     </div>
   </div>
   
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary btn-large btn-block" ng-click="search()">Search</button>
+      <button type="submit" class="btn btn-primary btn-large btn-block" ng-click="searchByForm(address,city,state,zip)">Search</button>
     </div>
   </div>
 </form>
