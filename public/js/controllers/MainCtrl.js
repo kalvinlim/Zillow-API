@@ -47,24 +47,12 @@ angular.module('MainCtrl', ['percentFilter', 'endDateFilter']).controller('MainC
 		$scope.searchQueried = false;
 		$scope.mapsApiKey = 'AIzaSyAtwVSPdFvVErwpn25y2JjvNOVYsjvaK7Q';
 		
-	//	$scope.address = encodeURI(address);
-		//$scope.citystatezip = encodeURI($scope.city + " " + $scope.state); 
-		
 		$scope.result = entry.get({ address: address, citystatezip: citystatezip}, function(data){
-			//console.log($scope.form);
-			//console.log(data);
-
 			var result = data["SearchResults:searchresults"].response[0].results[0].result[0];
 
 			$scope.estimate = data["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].amount[0]["_"];
 			$scope.low = data["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].valuationRange[0].low[0]["_"];
 			$scope.high = data["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].valuationRange[0].high[0]["_"];
-
-			//console.log(data["SearchResults:searchresults"].response[0].results[0].result[0]);
-
-			//console.log(data["SearchResults:searchresults"].response[0].results[0].result[0].bathrooms[0]);
-
-			//console.log(result.bedrooms);
 			$scope.bedrooms = result.bedrooms === undefined ? '-' : result.bedrooms[0];
 			$scope.bathrooms = data["SearchResults:searchresults"].response[0].results[0].result[0].bathrooms[0];
 			$scope.finishedSqFt = data["SearchResults:searchresults"].response[0].results[0].result[0].finishedSqFt[0];
@@ -74,8 +62,6 @@ angular.module('MainCtrl', ['percentFilter', 'endDateFilter']).controller('MainC
 
 			$scope.change = data["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].valueChange[0]["_"];
 
-
-			
 			$scope.address = decodeURI(address);
 			
 			var foo = decodeURI(citystatezip).split(" ");
@@ -83,10 +69,6 @@ angular.module('MainCtrl', ['percentFilter', 'endDateFilter']).controller('MainC
 			$scope.city = foo[0];
 			$scope.state = foo[1];
 			$scope.zip = foo[2];
-
-			console.log($scope.state);
-			console.log(decodeURI(citystatezip));
-			console.log(citystatezip);
 
 			$scope.searchQueried = true;		
 		});
