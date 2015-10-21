@@ -6,6 +6,7 @@ var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var fs 			   = require('fs');		
 var request 	   = require('request');
+var _ 		 	   = require('underscore');
 
 // configuration ===========================================
 
@@ -24,7 +25,50 @@ app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-f
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
 
-app.get('/mock/api/v1/search.json', function(req, res, next){
+app.get('/mock/api/v1/clean/search.json', function(req, res, next){
+	fs.readFile('server/mock-search-api.json', 'utf8', function (err,data) {
+		if (err) {
+			return console.log(err);
+		}	
+	    //res.json(JSON.parse(data));		 	
+
+	    var result = JSON.parse(data);
+
+	    var foo = {
+	    				//status: result["SearchResults:searchresults"].message, 
+	    				data:  _.first(_.first(_.first(result["SearchResults:searchresults"].response).results ).result)
+
+				   };
+		//	console.log(_.first(_.first(_.first(result["SearchResults:searchresults"].response).results ).result );
+
+	    res.json(foo);
+
+	});
+
+});
+
+app.get('/mock/api/v1/xmlparse/search.json', function(req, res, next){
+	fs.readFile('server/mock-search-api-xml.xml', 'utf8', function (err,data) {
+		if (err) {
+			return console.log(err);
+		}	
+	 
+		var xml2js = require('xml2js');
+		var parser = new xml2js.Parser({explicitArray : false});
+		
+	    parser.parseString(data, function(err, result){
+	    	var foo = JSON.parse(JSON.stringify(result));
+	    	var payload =	{
+	    						status: foo["SearchResults:searchresults"].message,
+	    						data: foo["SearchResults:searchresults"].response.results.result
+	    					};
+	    	res.json(payload);
+	    });
+	});
+
+});
+
+app.get('/mock/api/v1/raw/search.json', function(req, res, next){
 	fs.readFile('server/mock-search-api.json', 'utf8', function (err,data) {
 		if (err) {
 			return console.log(err);
@@ -46,6 +90,8 @@ app.get('/api/v1/search.json', function(req, res, next){
 	    	parseString(body, function (err, result) {
     			res.json(JSON.parse(JSON.stringify(result)));
 			});  	
+
+
 		}
 	})
 });
